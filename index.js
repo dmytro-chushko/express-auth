@@ -7,6 +7,7 @@ const authRouter = require("./authRouter");
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
+const HOST_DB = process.env.HOST_DB || "";
 
 const app = express();
 
@@ -15,10 +16,8 @@ app.use("/auth", authRouter);
 
 const start = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://Dmytro:dPZoD6D3bo2endE3@cluster0.nwpxzjg.mongodb.net/express-auth"
-    );
-    app.listen(PORT, () => console.log(`Servr started at port ${PORT}`));
+    await mongoose.connect(HOST_DB);
+    app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
   } catch (e) {
     console.log(e);
   }
