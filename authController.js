@@ -26,11 +26,11 @@ class AuthController {
 
       const candidate = await User.findOne({ username });
       if (candidate) {
-        return res.status(400).json({ message: "User allready exist" });
+        return res.status(400).json({ message: "User already exist" });
       }
 
       const hashPassword = bcrypt.hashSync(password, 7);
-      const userRole = await Role.findOne({ value: "USER" });
+      const userRole = await Role.findOne({ value: "ADMIN" });
       const user = new User({
         username,
         password: hashPassword,
@@ -67,16 +67,19 @@ class AuthController {
     } catch (e) {
       console.log(e);
 
-      res.status(400).json({ messsage: "Regitration error" });
+      res.status(400).json({ messsage: "Login error" });
     }
   }
 
   async getUsers(req, res) {
     try {
+      const users = await User.find();
+
+      res.json(users);
     } catch (e) {
       console.log(e);
 
-      res.status(400).json({ messsage: "Regitration error" });
+      res.status(400).json({ messsage: "Registration error" });
     }
   }
 
