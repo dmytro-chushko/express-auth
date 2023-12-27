@@ -43,7 +43,7 @@ class AuthController {
     } catch (e) {
       console.log(e);
 
-      res.status(400).json({ messsage: "Regitration error" });
+      res.status(400).json({ messsage: "Registration error" });
     }
   }
 

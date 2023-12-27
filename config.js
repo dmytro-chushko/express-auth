@@ -1,3 +1,7 @@
+const dotenv = require("dotenv");
+
+dotenv.config();
+
 module.exports = {
-  secret: "SECRET_KEY_RANDOM",
+  secret: process.env.SECRET_KEY,
 };
